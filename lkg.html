@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> 聘宝简历搜索引擎 </title>
+	<link rel="stylesheet" type="text/css" href="search.css">
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div class='' id='header'>
+	<img src="https://www.pinbot.me/static/b_index/img/new_logo.png" style="height: 40px;
+    margin-top: 10px;
+    margin-left: 30px;">
+
+	<span class="chaos">.chaos</span> 
+	<span class="chaos-out">退出</span> 
+</div>
+
+<div id='filter_form' style="
+	height: 212px;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-bottom: 0;
+    padding-left: 20px;
+    margin-top: 40px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 10px;
+    background: #ebf0f1;">
+
+	
+
+	<div class="chaos-list chaos-job-place style="background-color:white" "> 
+		<span class="chaos-list-title">定制类型:</span>
+		<div class="btn-group bootstrap-select">
+			<!--<button type="button" class="btn dropdown-toggle btn-defalut" data-toggle="dropdown" title="全部"> 
+				<span class="filter-option pull-left">全部</span>
+				&nbsp
+				<span class="bs-caret">
+					<span class="caret"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu open" style="max-height: 157px; overflow: hidden; min-height: 0px;">
+				<ul class="dropdown-menu inner" role="menu" style="max-height: 157px; overflow: hidden; min-height: 0px;">
+					<li data-original-index="0" class="selected">
+						<a tabindex="0" class style data-tokens="null">
+							<span class="text">全部</span>
+							<span class="glyphicon glyphicon-ok check-mark"></span>
+						</a>
+					</li> 
+					<li data-original-index="1">
+						<a tabindex="0" class style data-tokens="null">
+							<span class="text">聘宝</span>
+							<span class="glyphicon glyphicon-ok check-mark"></span>
+						</a>
+					</li>
+					<li data-original-index="2">
+						<a tabindex="0" class style data-tokens="null">
+							<span class="text">其他</span>
+							<span class="glyphicon glyphicon-ok check-mark"></span>
+						</a>
+					</li>
+				</ul>
+			</div>-->
+			<select class="selectpicker" name="feed-type" tabindex="-98">
+				<option value> <span class="word">全部</span></option>
+				<option value="1"> 聘宝</option>
+				<option value="2,3,4"> 其他</option>
+			</select>
+		</div>
+	</div>
+	<div class="chaos-list chaos-job-place">
+		<span class="chaos-list-title">性别:</span>
+		<div class="btn-group bootstrap-select">
+			<!--<button type="button" class="btn dropdown-toggle btn-defalut" data-toggle="dropdown" data-id="gender" title="全部"> -->
+		</div>
+		<select class="selectpicker" name="feed-type" tabindex="-98">
+				<option value> 全部</option>
+				<option value="1"> 男</option>
+				<option value="2,3,4"> 女</option>
+			</select>
+	</div>
+	<div class="chaos-list chaos-job-place">
+		<span class="chaos-list-title">学历:</span>
+		<div class="btn-group bootstrap-select">
+			<!--<button type="button" class="btn dropdown-toggle btn-defalut" data-toggle="dropdown" data-id="gender" title="全部"> -->
+		</div>
+		<select class="selectpicker" name="degree" tabindex="-98">
+				<option value> 全部</option>
+				<option value="1"> 大专</option>
+				<option value="2,3,4"> 本科</option>
+				<option > 硕士</option>
+				<option > 博士</option>
+			</select>
+	</div>
+	<div class="chaos-list chaos-job-place">
+		<span class="chaos-list-title">现居地:</span>
+		<div class="btn-group bootstrap-select">
+			<!--<button type="button" class="btn dropdown-toggle btn-defalut" data-toggle="dropdown" data-id="gender" title="全部"> -->
+		</div>
+		<select class="selectpicker" name="address" tabindex="-98">
+				<option value> 现居地</option>
+				<option value="1"> 期望地</option>
+				
+			</select>
+		<input type="text" placeholder="请输入地点" id="address" class="form-control"></input>
+	</div>
+	<div class="chaos-list chaos-time">
+	<span class="chaos-list-title">更新时间:</span>
+		<div class="input-group input-group-sm">
+		<input type="text" id="daterange1" name="daterange" value="2016-01-01" class="form-control" placeholder="开始日期" aria-describedby="sizing-addon3">
+		<span class="chaos-center" id="daterange-addon">－</span>
+		<input type="text" id="daterange2" name="daterange" class="form-control" placeholder="结束日期" aria-describedby="sizing-addon3">
+		</div>
+	</div>
+	<div class="chaos-list chaos-job-source chaos-clear-right">
+		<span class="chaos-list-title">
+			"简历来源:"
+			<input type="checkbox" value="yes" name="has-contact-info">
+			<em style="font-size: small;
+    color: #44b5e8;">只有联系方式</em>
+		</span>
+
+		<select class="selectpicker-in" name="degree" tabindex="-98">
+				<option value> 全库简历</option>
+				<option value="1"> 独立</option>
+				<option value="2,3,4"> 外网</option>
+				
+			</select>
+	</div>
+	<div class="chaos-list chaos-job-place">
+		<span class="chaos-list-title">简历平台:</span>
+		<div class="btn-group bootstrap-select">
+			<!--<button type="button" class="btn dropdown-toggle btn-defalut" data-toggle="dropdown" data-id="gender" title="全部"> -->
+		</div>
+		<select class="selectpicker" name="degree" tabindex="-98">
+				<option value> 全部</option>
+				<option value="1"> 智联</option>
+				<option value="2,3,4"> 51</option>
+				
+			</select>
+	</div>
+	<div class="chaos-list chaos-job-place">
+		<span class="chaos-list-title">公司类型:</span>
+		<div class="btn-group bootstrap-select">
+			<!--<button type="button" class="btn dropdown-toggle btn-defalut" data-toggle="dropdown" data-id="gender" title="全部"> -->
+		</div>
+		<select class="selectpicker" name="degree" tabindex="-98">
+				<option value> 不限</option>
+				<option value="1"> BAT</option>
+				<option value="2,3,4"> TOP50</option>
+			
+			</select>
+	</div>
+	<div class="chaos-list chaos-job-place">
+	<span class="chaos-list-title">公司名称:</span>
+	<input type="text" placeholder="请输入" id="address" class="form-control"></input>
+	</div>
+	<div class="chaos-list chaos-job-place">
+	<span class="chaos-list-title">行业名称:</span>
+	<input type="text" placeholder="请输入" id="address" class="form-control"></input>
+	</div>
+	<div class="chaos-list chaos-job-place">
+	<span class="chaos-list-title">职位名称:
+	
+		<input type="checkbox" value="yes" name="has-contact-info">
+		<em  style="font-size: small;color: #44b5e8;">只看最近一份工作</em>
+		</span>
+    	<input type="text" placeholder="请输入" id="address" class="form-control"></input>
+	</div>
+	<div class="chaos-list chaos-job-place">
+	<span class="chaos-list-title">全文关键词:</span>
+	<input type="text" placeholder="请输入" id="address" class="form-control"></input>
+	</div>
+	<div class="chaos-list chaos-job-place">
+	<span class="chaos-list-title">搜索来源:</span>
+	<button class="chaos-btn" name="query_type" value="resume">简历库</button>
+	</div>
+	<div class="chaos-list chaos-time">
+	<span class="chaos-list-title">薪资范围:</span>
+		<div class="input-group input-group-sm">
+		<input type="text" id="daterange1" name="daterange"  class="form-control" placeholder="请输入 元" aria-describedby="sizing-addon3">
+		<span class="chaos-center" id="daterange-addon">－</span>
+		<input type="text" id="daterange2" name="daterange" class="form-control" placeholder="请输入 元" aria-describedby="sizing-addon3">
+		</div>
+	</div>
+	
+</div>
+
+<div id='summary'>
+	
+	搜索条件:resume 参数:地点= 职位名称= 工作年限=, 学历=全部 更新时间=2016-01-01,2016-9-6 薪资范围=, 定制类型=结果记录数:6399674
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" style="float:right;">×</span></button>
+</div>
+
+
+
+<div class="table-top">
+	<div class="paginators">
+	
+		<div class="page-left">
+			<a class="page-left-prev" href="javascript:void(0)"></a>
+			<span>
+				<b>2</b>
+				/
+				<em>345505</em>
+			</span>
+			<a class="page-left-next" href="javascript:void(0)"></a>
+			<div class="page-sr go_to_page"><input type="text" placeholder="请输入页数" id="go_to_num"><i id="go_to_btn"></i></div>
+		</div>
+	<div class="columns columns-right btn-group pull-right"></div>
+</div>
+
+<div id='search_results'>
+	
+	搜索结果
+</div>
+
+
+<div class='click_pages'>
+	
+	<上一页> 1 2  3 4 翻页按钮 <下一页>
+</div>
+
+</body>
+<script type="text/javascript" src="dwy.js"></script>
+</html>

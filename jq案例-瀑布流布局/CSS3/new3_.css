@@ -1,0 +1,25 @@
+#main{
+	-webkit-column-width:202px;/*chrome   safari浏览器*/
+	-moz-column-width:202px;/*firefox浏览器*/
+	-o-column-width:202px;
+	-ms-column-width:202px;/*IE浏览器*/
+
+}
+
+.box{
+	padding:10px 0 0 15px;
+}
+
+.pic{
+	padding: 10px;
+	border:1px solid #ccc;
+	border-radius:5px;
+	box-shadow: 0 0 5px #ccc;
+	width:165px;
+}
+
+.pic img{
+	display: block;
+	width:165px;
+	height:auto;
+}
