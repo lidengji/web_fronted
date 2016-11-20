@@ -87,8 +87,8 @@
 		}
 		/*解决导航条在ie6中跳动不固定的bug*/
 		*html #menu {
-			position:absolu(te;
-						top:expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
+			position:absolute;
+		    top:expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
 		}
 		/*解决导航条在ie6中定位fixed不兼容问题*/
 	</style>
@@ -101,27 +101,27 @@
 			var top=$(document).scrollTop();
 			//console.log(top)控制台输出结果查看
 			var menu=$("#menu");
-			var iterms=$("#content").find(".iterm")
+			var iterms=$("#content").find(".iterm");
 
-			var currentId=""//当前所在楼层(iterm)#id 赋上空值
+			 var currentId="";//当前所在楼层(iterm)#id 赋上空值
 			iterms.each(function(){
 				var m=$(this);
 				var itermTop=m.offset().top;//获取到每一个iterm的top
 				if (top>itermTop-200) {
-					currentId="#"+m.attr("id")
+					currentId="#"+m.attr("id");
 				}else{
 					return false;
 				}
-			})
+			});
 			//给相应楼层的a设置current,取消其他链接的current
 			 var currentLink=menu.find(".current");
-			 if (currentId&&currentLink.attr("href")!=currentId) {
+			 if (currentId&&currentLink.attr("href")!==currentId) {
 			 	currentLink.removeClass("current");
 			 	menu.find("[href="+currentId+"]").addClass("current");	
 			 }
 
-			})
-		})
+			});
+		});
 	</script>
 </head>
 <body>
