@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html charset=utf-8"/>
+	<title>taobao demo</title>
+	<style  type="text/css">
+	@font-face{
+		font-family: iconfont;src:url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.eot);
+		src:url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.eot?#iefix) format("embedded-opentype"),
+		url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.woff) format("woff"),url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.ttf) format("truetype"),url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.svg#uxiconfont) format("svg")
+	}
+		body{
+		font:12px/1.5 tahoma,arial,sans-serif;
+		}
+
+		a{
+			text-decoration:none;
+		}
+
+		.search-container{
+			position:relative;
+		}
+
+		.search-tips{
+			 float: right; 
+			 padding:3px 0 0 15px;
+		  }
+
+		.search-button{
+			 float: right; 
+		  }
+
+		.search-tips a{
+		  	color: #c6c6c6;
+		  }
+
+		.btn-search{
+			background: url(http://gtms01.alicdn.com/tps/i1/T1qyj8Fc8aXXc4E9bI-400-300.png);
+			width:100px;
+			height:45px;
+			background-position: 0 -200px;
+			border:0;
+			cursor:pointer;
+		}
+
+		.search-common-panel{
+			height:39px;
+			background-color: #f50;
+			overflow: hidden;
+			padding: 3px 0 3px 77px;
+		}
+
+		.search-common-panel i{
+			position:absolute;
+			top:14px;
+			left:86px;
+			z-index: 2;
+			color: #c6c6c6;
+		}
+ 
+		.search-common-panel input{
+			height:39px;
+			line-height: 39px;
+			width:100%;
+			border:0 none;
+			outline: 0;
+			background-color: white;
+		}
+
+		.iconfont{
+			font-family: iconfont;
+			font-size: 12px;
+			font-style: normal;
+		}
+
+		ul{
+			list-style: none;
+		}
+
+		ul,li{
+			margin:0;
+			padding: 0;
+		}
+
+		.search-list{
+			position:absolute;
+			top:3px;
+			left:3px;
+			width:72px;
+			height:39px;
+			overflow: hidden;
+			background-color:#fff;
+			border-left: 1px solid #c6c6c6;
+			border-right: 1px solid #e5e5e5;
+		}
+
+		.search-list li{
+			display: none; 
+			height:39px;
+			line-height: 39px;
+			overflow: hidden;
+			text-align: center;
+		}
+
+		.search-list li a{
+			color: #c6c6c6;
+		}
+
+		.search-list .selected{
+			background-color: #f6f6f6;
+			display: block;
+		}
+
+		.trigger-hover{
+			height: auto;	
+
+		}
+
+		.trigger-hover li{
+			display: block;
+			}
+	</style>
+		
+		
+		
+</head>
+<body>
+	<div class="search-container">
+		<div id="search-tab" class="search-list">
+			<ul>
+				<li id="tab_1" class="selected"><a href="#">宝贝</a></li>
+				<li id="tab_2"><a href="#">店铺</a></li>
+			</ul>
+		</div>
+		<div class="search-pannel">
+			<form>
+				<div class="search-tips"><a href="#">高级<br>搜索</a></div> 
+				<div class="search-button">
+					<button class="btn-search" type="submit"></button>
+				</div>
+				<div class="search-common-panel">
+					<input type="text" x-webkit-speech="">   <!-- webkit代表chrome浏览器 现在语音输入功能已被禁用?***必须挂vpn?-->
+					<i class="iconfont">ő</i>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</body>
+<script>
+	var getDom=function(id){
+		return document.getElementById(id);
+	}
+
+	var addEvent=function(id,event,fn){
+		var el=getDom(id)||document;
+		if(el.addEventListener){
+			el.addEventListener(event,fn,false);
+		}else if (el.attachEvent) {
+			el.attachEvent('on'+event,fn);
+		}
+	}
+
+	addEvent('search-tab','mouseover',function(){
+		this.className+='trigger-hover';
+	})
+	addEvent('tab_1','mouseover',function(){
+		if(this.className.indexOf("selected")<0){
+			this.className+='selected';
+		}
+		
+	})
+	addEvent('tab_1','mouseout',function(){
+		this.className='';
+	})
+
+	addEvent('tab_1','click',function(){
+		getDom('search-tab').className='search-list';
+	})
+
+	addEvent('tab_2','click',function(){
+		getDom('search-tab').className='search-list';
+	})
+	addEvent('tab_2','mouseover',function(){
+		if(this.className.indexOf("selected")<0){
+			this.className+='selected';
+		}
+		
+	})
+	addEvent('tab_2','mouseout',function(){
+		this.className='';
+	})
+
+</script>
+
+</html>

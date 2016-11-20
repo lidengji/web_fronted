@@ -1,0 +1,175 @@
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>bing search</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<style type="text/css">
+		body{
+			background-color: #333;
+		}
+
+		.bg-div{
+			background-image: url(source/river.jpg);
+			width: 1228px;
+			height:690px;
+			margin:0 auto;
+		}
+
+		.logo{
+			background-image: url(source/logo.png);
+			width:107px;
+			height:53px;
+			float:left;
+			margin:-4px 18px 0 0;
+		}
+
+		form{
+			float:left;
+			background-color: white;
+			padding:5px;
+		}
+
+		.search-text	{
+			border:0;
+			float: left;
+			height: 25px;
+			line-height: 25px;
+			outline: none;/*outline属性只会在chrome中存在,表现为点击输入框出现蓝亮边框线*/
+			width:350px;
+		}
+
+		.search-button{
+			border:0;
+			background-image: url(source/search-button.png);
+			width: 29px;
+			height:29px;
+			float: left;
+		}
+
+		.search-box{
+			position:absolute;
+			top:200px;
+			left:300px;
+		}
+
+		.suggest{
+			width:388px;
+			background-color: white;
+			border:1px solid #999;
+		}
+
+		.suggest ul{
+			list-style: none;
+			margin:0;
+			padding:0;
+		}
+
+		.suggest li{
+			padding:3px;
+			font-size: 14px;
+			line-height: 25px;
+			cursor: pointer;;
+		}
+
+		.suggest li:hover{
+			text-decoration: underline;
+			background-color: #e5e5e5;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="bg-div">
+		<div class="search-box">
+			<a href='http://www.baidu.com' target="312312"><div class="logo"></div></a>
+
+			<form class="search-form" action="https://cn.bing.com/search" target="_blank" id="search-form">
+				<input type="text" class="search-text" name="q" id="search_input" autocomplete="off"/>
+	 			<input type="submit" class="search-button" value=""/>
+			</form>
+		</div>
+	</div>
+	<div class="suggest" id="search-suggest" style="display: none;">
+		<ul id="search-result">
+			<li>搜索结果1</li>
+			<li>搜索结果2</li>
+			<li>搜索结果3</li>
+			<li>搜索结果4</li>
+		</ul>
+	</div>
+
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script>
+			$("#search_input").bind('keyup',function(){
+				var searchText=$("#search_input").val();
+				$.getJSON('http://api.pinbot.me/search/suggest/?topn=10&keywords='+searchText,function(d){    
+					// console.log(d);
+					// console.log(d.msg);
+					//console.log(d.sim_keywords);
+					// console.log('-----------');
+					// console.log(d.sim_keywords[0]);
+					// var d=d.AS.Results[0].Suggests;
+					var d=d.sim_keywords;
+					var html='';
+					for(var i=0;i<d.length;i++){
+						// console.log(d[i]);
+						html+='<li>'+d[i]+"<li>";
+					}
+					$("#search-result").html(html);
+					$('#search-suggest').show().css({
+						top:$('#search-form').offset().top+$('#search-form').outerHeight(),
+						left:$('#search-form').offset().left,
+						position:'absolute'
+					});
+				},'jsonp');//用于和服务器发起url请求必须要用到的一个方法;
+				//?后的表达是由服务器决定的
+				
+			});
+
+			$(document).bind('click',function(){
+				$("#search-suggest").hide();
+			})
+
+			$(document).delegate('li','click',function(){
+				var keyword=$(this).text(); 
+				console.log(this);
+				// alert('lkg');
+				location.href='https://cn.bing.com/search?q='+keyword;
+				target:_blank;
+			})
+
+
+	</script>
+</body>
+</html>
+
+
+<!--
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>bing search</title>
+	<style type="text/css">
+	body{background-color: #333;}
+	.bg-div{position:relative;background-image: url(river.jpg);width:1228px;height:690px;margin: 0 auto;}
+	.logo{background-image: url(logo.png);height:53px;width: 107px; float: left;margin: -4px 18px 0 0;}
+	.search-form{float: left; background-color: #fff;padding:5px;}
+	.search-text{height:25px;line-height: 25px;float: left;width: 350px;border: 0;outline: none;}
+	.search-button{background-image: url(search-button.png);width:29px;height:29px;float: left;border: 0}
+	.search-box{position:absolute;top:150px;left: 200px; }
+	</style>
+</head>
+
+<body>
+ <div class="bg-div">
+ 	<div class="search-box">
+ 	<div class="logo"></div>
+ 	
+	 	<form class="search-form" action="https://cn.bing.com/search" target="_blank">
+	 		<input type="text" class="search-text" name="q"/>
+	 		<input type="submit" class="search-button" value=""/>
+	 	</form>
+ 	</div>
+ </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>响应式菜单</title>
+	<style type="text/css">
+		.body{
+			margin: 0 auto;
+		}
+
+		.ul{
+			padding:0;
+			margin: 0;
+		}
+
+		a{
+			text-decoration: none;
+			color:white;
+			font-size: 14px;
+			padidng:0 3px;
+			display: block;
+		}
+
+		.menu li{
+			display: block;
+			float:left;
+			margin: 3px;
+			background-color: gray;
+			width:140px;
+			text-align:center;
+			color:white;
+			font-size: 9pt;
+		}
+
+		#logo{
+			background: white;
+			width:230px;
+		}
+
+		#logo a{
+			color:gray;
+			font-size: 35pt;
+			background-color: white;
+		}
+
+		#topLogo{
+			display: none;
+			margin:0 auto;
+			text-align:center;
+		}
+
+		#topLogo a{
+			color: black;
+			font-size: 35pt;
+		}
+
+		.rMenu{
+		/*	display: block;*/
+			display: none;
+		}
+
+		/*意为仅仅屏幕大小的变化,且规定最大最小值*/
+		@media only screen and (min-width:585px) and (max-width: 823px)  
+		{
+			#logo{
+				display: none;
+			}
+
+			#topLogo{
+				display: block;
+				width:100%;
+			}
+
+			.menu{
+				width:585px;/*使menu的宽度有一个固定值,保证topLogo在宽度变化时居中*/
+			}
+		}
+
+		/*宽度数值根据元素多少和宽度来定义,如li 140px logo 230px设置后将其挤成585px*/
+		@media only screen and  (max-width: 585px){
+			#logo{
+				display: none;
+			}
+
+			#topLogo{
+				display: block;
+			}
+
+			.menu{
+				width:100%;
+			}
+
+			.menu li{
+				width:100%;
+				visibility: hidden;
+			}
+
+			.rMenu{
+				display: block;
+				text-align:right;
+			}
+		} 
+	</style>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#rList").on("click",function(){
+				if ($("ul li").hasClass("active")) {
+					$("ul li").css("visibility","hidden").removeClass("active");
+				}else{
+					$("ul li").css("visibility","visible").addClass("active");
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<ul class="menu">
+		<div id="topLogo">
+			<a href="#">慕课网</a>
+			<a href="#" id="rList" class="rMenu"><img src="images/icon.png"></a>
+		</div>
+		<li><a href="#">课程大厅</a><br/>
+			IT课程都在这里啦!
+		</li>
+		<li><a href="#">学习中心</a><br/>
+			好好学习,天天向上!
+		</li>
+		<li id="logo"><a href="#">慕课网</a>
+		</li>
+		<li><a href="#">个人中心</a><br/>
+			个人中心 修改密码
+		</li>
+		<li><a href="#">关于我们</a><br/>
+			单位地址 应聘信息
+		</li>
+	</ul>
+</body>
+</html>

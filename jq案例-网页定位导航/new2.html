@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>地狗购物网-网页定位导航效果</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+
+		body{
+			font-size: 12px;
+			line-height: 1.7;
+		}
+
+		li{
+			list-style: none;
+		}
+
+		#content{
+			width:800px;
+			margin:0 auto;
+			padding:20px;
+		}
+
+		#content h1{
+			color:#0088bb;
+		}
+
+		#content .iterm{
+			padding:20px;
+			margin-bottom: 20px;
+			border:1px dotted #0088bb;
+		}
+
+		#content .iterm h2{
+			font-size: 16px;
+			font-weight: bold;
+			border-bottom: 2px solid #0088bb;
+			margin-bottom: 10px;
+		}
+
+		#content .iterm li{
+			display: inline;
+			margin-right: 10px;
+		}  
+
+		#content .iterm li a img{
+			width: 230px;
+			height: 230px;
+			border:none;
+		}
+		/*右侧导航样式*/
+		#menu {
+			position:fixed;/*位置固定*/
+			top:100px;
+			left:50%;/*元素居中*/
+			margin-left:400px;/*根据内容宽度设置 将其定位于相应位置*/
+			width:80px;
+		}
+
+		#menu ul li a{
+			display: block;
+		    margin: 5px 0;
+		    font-size: 14px;
+		    font-weight: bold;
+		    color: #333;
+		    width: 80px;
+		    height: 50px;
+		    line-height: 50px;
+		    text-decoration: none;
+		    text-align: center;
+		}
+
+		#menu ul li a:hover,
+		/*current意为作为焦点时*/
+		#menu ul li a.current{
+			color:#fff;
+			background: #0088bb;
+		}
+
+		/*ie6-hack*/
+		*html,*html body{
+			background-image: url(about blank);
+			background-attachment: fixed;
+		}
+		/*解决导航条在ie6中跳动不固定的bug*/
+		*html #menu {
+			position:absolute;
+		    top:expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
+		}
+		/*解决导航条在ie6中定位fixed不兼容问题*/
+	</style>
+	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			//滚动条发生滚动
+			$(window).scroll(function(){
+//在这里,我们做一些事情:   !左边内容发生滚动时,右侧导航随之发生改变.!
+			var top=$(document).scrollTop();
+			//console.log(top)控制台输出结果查看
+			var menu=$("#menu");
+			var iterms=$("#content").find(".iterm");
+
+			 var currentId="";//当前所在楼层(iterm)#id 赋上空值
+			iterms.each(function(){
+				var m=$(this);
+				var itermTop=m.offset().top;//获取到每一个iterm的top
+				if (top>itermTop-200) {
+					currentId="#"+m.attr("id");
+				}else{
+					return false;
+				}
+			});
+			//给相应楼层的a设置current,取消其他链接的current
+			 var currentLink=menu.find(".current");
+			 if (currentId&&currentLink.attr("href")!==currentId) {
+			 	currentLink.removeClass("current");
+			 	menu.find("[href="+currentId+"]").addClass("current");	
+			 }
+
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="menu">
+		<ul>
+			<li><a href="#iterm1">1F 男装</a></li>
+			<li><a href="#iterm2">2F女装</a></li>
+			<li><a href="#iterm3">3F 美妆</a></li>
+			<li><a href="#iterm4">4F 数码</a></li>
+			<li><a href="#iterm5">5F 母婴</a></li>
+		</ul>
+	</div>
+	<div id="content">
+		<h1>地狗购物网</h1>
+		<div id="iterm1" class="iterm">
+			<h2>1F 男装</h2>
+			<ul>
+				<li><a href="#" class="current"><img src="/Users/dengwanying/web_fronted/源代码/1F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+			</ul>
+		</div>
+		<div id="iterm2" class="iterm">
+			<h2>2F 女装</h2>
+			<ul>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+			</ul>
+		</div>
+		<div id="iterm3" class="iterm">
+			<h2>3F 美妆</h2>
+			<ul>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+			</ul>
+		</div>
+		<div id="iterm4" class="iterm">
+			<h2>4F 数码</h2>
+			<ul>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+				<li><a href="#"><img src="4F.png" alt=""/></a></li>
+			</ul>
+		</div>
+		<div id="iterm5" class="iterm">
+			<h2>5F 母婴</h2>
+			<ul>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+				<li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+</html>

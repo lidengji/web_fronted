@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>下拉菜单案例</title>
+	<style type="text/css">
+
+		*{
+			margin:0;
+			padding:0;
+		}
+
+		#nav{
+			background-color: #eee;
+			width:600px;
+			height:40px;
+			margin:0 auto;
+		}
+
+		ul{
+			list-style: none;
+		}
+
+		ul li{
+			float: left;
+			position:relative;
+			line-height: 40px;
+			text-align:center;
+		}
+
+		a{
+			text-decoration: none;
+			color: black;
+			display: block;
+			padding:0 10px;
+			height:40px;/*解决ie6下拉菜单显示时li之间空隙且不居中问题*/
+		}
+
+		a:hover{
+			color:white;
+			background-color: #c6c6c6;
+		}
+
+		ul li ul{
+			position:absolute;/*以浏览器(0,0)位置做定位*/
+			left: 0px;
+			top:40px;
+			display: none;/*用css方法实现二级菜单的展示与隐藏;*/
+		}
+
+		ul li ul li{
+			float:none;
+			background-color:  #eee;
+			margin-top:2px;
+		}
+
+		ul li ul li a{
+			width:80px;
+		}/*解决ie6下拉菜单显示时li hover时宽度不占满问题*/
+
+		ul li ul li a:hover{
+			background-color: #f1cccc;	
+		}
+
+		ul li:hover ul{
+			display: block;
+		}/*用css方法实现二级菜单的展示与隐藏;*/
+	</style>
+</head>
+<body>
+	<div id="nav">
+		<ul>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">课程大厅</a>
+				<ul>
+					<li><a href="#">JavaScript</a></li>
+					<li><a href="#">jQuery</a></li>
+				</ul>
+			</li>
+			<li><a href="#">学习中心</a>
+				<ul>
+					<li><a href="#">视频学习</a></li>
+					<li><a href="#">实例联系</a></li>
+					<li><a href="#">交流平台</a></li>
+				</ul>
+			</li>
+			<li><a href="#">经典案例</a></li>
+			<li><a href="#">关于我们</a></li>
+		</ul>
+	</div>
+</body>
+</html>

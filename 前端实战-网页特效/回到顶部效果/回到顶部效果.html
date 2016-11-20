@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>回到顶部效果</title>
+	<style type="text/css">
+		.box{
+			width: 1190px;
+			/*必须设置宽度,否则不会居中,此宽度即为图片宽度;*/
+			margin:0 auto;
+		}
+
+		#btn{
+			width:40px;
+			height: 40px;
+			position:fixed;
+			/*使用固定定位*/
+			left:50%;
+			margin-left:600px;
+			bottom:30px;
+			background:url(images/top_bg.png) no-repeat left top;
+			display: none;
+			/*一张图片中 左边为0 上边为0 的位置*/
+		}
+
+		#btn:hover{
+			background: url(images/top_bg.png) no-repeat left top -40px;
+			/*一张图片中 左边为0 上边为40px 的位置  注意使用此位置要为-值,取到图片使用部分*/
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<img src="images/tb_bg.jpg"/>
+	</div>
+	<a href="javascript:" id="btn" title="回到顶部"></a>
+	<!-- 防止空链接点击后直接返回顶部 用js代码实现-->
+	
+	<script type="text/javascript">
+		window.onload = function() {
+			
+		    var obtn = document.getElementById("btn");
+		    var clientHeight=document.documentElement.clientHeight;//获取可视区域的高度;
+   		    var timer = null;
+    		var isTop = true;
+    //滚动条滚动时触发;
+    		window.onscroll = function() {
+    			var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+    			if (osTop>=clientHeight) {
+    				obtn.style.display='block';	
+    			}else{
+    				obtn.style.display='none';
+    			}
+       		 if (!isTop) {
+            clearInterval(timer);
+        		}
+        		isTop=false;
+    		};
+
+		    obtn.onclick = function() {
+		        // alert('我被点击了~');
+		        timer=setInterval(function() {//设置定时器;
+		        //获取滚动条距离顶部的高度;
+		        var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+		        // ||前支持IE浏览器;||后支持chrome浏览器;
+		        // console.log(osTop);
+		        var ispeed=Math.floor(-osTop/15);
+            document.documentElement.scrollTop = document.body.scrollTop = osTop+ispeed;//(减去负数)
+
+            isTop=true;
+            if (osTop === 0) {
+                clearInterval(timer);
+            }
+        }, 10);
+		    };
+		};
+	</script>
+</body>
+</html>
