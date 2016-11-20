@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>动画菜单</title>
+	<style type="text/css">
+		.top-nav{
+			font-size: 13px;
+			font-weight: bold;
+			list-style: none;
+			
+		}
+
+		.top-nav li{
+			float:left;
+			margin-right: 1px;
+		}
+
+		.top-nav li a{
+			line-height: 34px;
+			text-decoration: none;
+			background: #f5f1f1;
+			color:#666666;
+			display: block;
+			width:80px;
+			text-align:center;
+		}
+
+		.top-nav ul{
+			list-style: none;
+			display: none;
+			padding: 0;
+			position:absolute;
+		}
+
+		
+
+		.top-nav li a:hover{
+			background:url(images/slide-pannel_14.png) 0 0 repeat-x;
+			color:white;
+		}
+
+		.note{
+			display: block;
+			color:#f5f1f1;
+			background:url(images/slide-pannel_14.png) 0 0 repeat-x;
+		}
+
+		.corner{
+			display: block;
+			height: 11px;
+			background:url(images/bird.png) 31px 0 no-repeat;/*31px代表距离左边31px(80/2-17/2)*/
+		}
+	</style>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".top-nav li").mouseover(function(){
+				$(this).find("ul").slideDown("1000");
+			});
+			$(".top-nav li").mouseleave(function(){
+				$(this).find("ul").slideUp("slow");
+			});
+		});
+	</script>
+</head>
+<body>
+	<ul class="top-nav">
+		<li><a href="#"><span class="note">慕课网</span></a></li>
+		<li><a href="#">课程大厅</a></li>
+		<li><a href="#">学习中心 >></a>
+			<ul id="mnuUl">
+				<span class="corner"></span>
+				<li><a href="#">前端课程 </a>
+				</li>
+				<li><a href="#">手机开发</a></li>
+				<li><a href="#">后台编程</a></li>
+			</ul>
+		</li>
+		<li><a href="#">关于我们</a></li>
+	</ul>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+	// css部分增加:
+	// .top-nav ul{
+	// 	height:0;  否则DOM没有动画效果;
+	// 	overflow:hidden;
+	// }
+
+	// html部分改动:
+	//给2级ul菜单增加id"mnuUl"
+
+	window.onload=function(){
+		var Lis=document.getElementsByTagName("li");
+		for(var i=0;i<Lis.length;i++){
+			Lis[i].onmouseover= function (){
+				var u=this.getElementsByTagName('ul')[0];
+				if(u!==undefined){u.style.display="block";
+				AddH(u.id);}
+			};
+			Lis[i].onmouseleave= function (){
+				var u=this.getElementsByTagName('ul')[0];
+				if(u!==undefined){u.style.display="block";
+				SubH(u.id);}
+			};
+		}
+	};
+
+	 function AddH(id){
+	 	var ulList=document.getElementById(id); 
+	 	var h=ulList.offsetHeight;
+	 	h+=1;
+	 	if (h<=42) {
+	 		ulList.style.height=h+"px";
+	 		setTimeout("AddH('"+id+"')",10);
+	 	}
+	 	else{
+	 		return;
+	 	}
+	 	
+	 }
+
+	 function SubH(id){
+	 	var ulList=document.getElementById(id); 
+	 	var h=ulList.offsetHeight;
+	 	h-=1;
+	 	if (h>0) {
+	 		ulList.style.height=h+"px";
+	 		setTimeout("SubH('"+id+"')",10);
+	 	}
+	 	else{
+	 		 ulList.style.display="none";
+	 		return;
+	 	}
+	 }
+
+</script>
+
+<!-- 以上js精简版 -->
+<script type="text/javascript">
+	
+window.onload=function(){
+		var Lis=document.getElementsByTagName("li");
+		for(var i=0;i<Lis.length;i++){
+			Lis[i].onmouseover= function (){
+				var u=this.getElementsByTagName('ul')[0];
+				if(u!==undefined){u.style.display="block";
+				changeH(u.id,1);}
+			};
+			Lis[i].onmouseleave= function (){
+				var u=this.getElementsByTagName('ul')[0];
+				if(u!==undefined){u.style.display="block";
+				changeH(u.id,-1);}
+			};
+		}
+	};
+
+	function changeH(id,count){
+		var ulList=document.getElementById(id); 
+	 	var h=ulList.offsetHeight;
+	 	h+=count;
+		if (count>0) {
+		 	if (h<=42) {
+		 		ulList.style.height=h+"px";
+		 		setTimeout("changeH('"+id+"',1)",10);
+		 	}
+		 	else{
+		 		return;
+		 	}
+	 	}
+	 	else{
+	 		if (h>0) {
+	 		ulList.style.height=h+"px";
+	 		setTimeout("changeH('"+id+"',-1)",10);
+	 	}
+	 	else{
+	 		 ulList.style.display="none";
+	 		return;
+	 	}
+	 	}
+	}
+
+
+	 
+
+</script>
+
+
+
+
+
+
+

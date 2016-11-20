@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>多级菜单</title>
+	<style type="text/css">
+		.top-nav{
+			font-size: 12px;
+			font-weight: bold;
+			list-style: none;
+			
+		}
+
+		.top-nav li{
+			float:left;
+			margin-right: 1px;
+		}
+
+		.top-nav li a{
+			line-height: 20px;
+			text-decoration: none;
+			background: #f5f1f1;
+			color:#666666;
+			display: block;
+			width:80px;
+			text-align:center;
+		}
+
+		.top-nav li a:hover{
+			color:white;
+			background-color: #f1cccc;
+		}
+
+		.top-nav li ul{
+			display: none;/*二级菜单隐藏时三级菜单也是隐藏的;*/
+			list-style: none;
+			padding:0;/*若不定义padding  hover出二级菜单时一级菜单最后两格会分离;*/
+			position:relative;
+		}
+
+		.top-nav li:hover ul{
+			display: block;
+			width:80px;/*固定宽度使二级菜单竖放;*/
+		}
+
+		.top-nav li:hover ul li ul{
+			display: none;
+
+		}
+
+		.top-nav li ul li:hover ul{
+			display: block;
+			top:0px;
+			left:80px;
+			position:absolute;/*固定三级菜单的位置*/
+		}
+
+	</style>
+</head>
+<body>
+	<ul class="top-nav">
+		<li><a href="#">首页</a></li>
+		<li><a href="#">课程大厅</a></li>
+		<li><a href="#">学习中心 >></a>
+			<ul>
+				<li><a href="#">前端课程 >></a>
+					<ul>
+						<li><a href="#">JavaScript</a></li>
+						<li><a href="#">Css</a></li>
+						<li><a href="#">jQuery</a></li>
+					</ul>
+				</li>
+				<li><a href="#">手机开发</a></li>
+				<li><a href="#">后台编程</a></li>
+			</ul>
+		</li>
+		<li><a href="#">关于我们</a></li>
+	</ul>
+</body>
+</html>
+
+
+
+<!-- 由于ie6不兼容hover属性,使用js代码代替hover出现部分 -->
+
+<script type="text/javascript">
+	window.onload=function(){
+		var isIE=!!window.ActiveXObject;
+		// 只有IE浏览器才支持ActiveXObject属性
+		var isIE6=isIE&&!window.XMLHttpRequest;
+		// IE6不支持XMLHttpRequest
+		if (isIE6) {
+			var lis=document.getElementsByTagName("li");
+			for (var i = 0;i<lis.length ; i++) {
+				lis[i].onmouseover=function(){
+					var u=this.getElementsByTagName("ul")[0];
+					if (u!==undefined) {   
+					 // 如果u存在,即三级菜单存在
+						u.style.display="block";
+					}
+				};
+
+				lis[i].onmouseout=function(){
+					var u=this.getElementsByTagName("ul")[0];
+					if (u!==undefined) {
+						u.style.display="none";
+					}
+				};
+
+			}
+		}
+	};
+</script>
+
+
+<!-- jq代码部分 -->
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		if (!$.support.leadingWhitespace) {
+			//此为jq9以上版本判断是否为ie6~8;
+			$("li").has("ul").mouseover(function(){
+						// 用has判断是否有"ul"存在;
+						$(this).children("ul").css("display","block");
+					}).mouseout(function(){
+						$(this).children("ul").css("display","none");
+				});
+		}
+		
+	});
+</script>
+
+
+
+
+
+
+
+
+
+

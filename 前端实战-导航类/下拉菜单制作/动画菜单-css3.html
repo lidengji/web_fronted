@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>css3-动画下拉菜单</title>
+<style type="text/css">
+*{
+margin:0;
+padding:0;
+}
+li{
+list-style:none;
+}
+a{
+text-decoration:none;
+}
+.top_nav{
+width:960px;
+margin:60px auto;
+border:1px solid #222;
+background-color:#111;
+background-image:linear-gradient(#444,#111);/*渐变*/
+border-radius:6px;
+box-shadow:0px 1px 1px #777;/*三个数值分别是水平 垂直  阴影模糊距离*/
+/*overflow: visible;*//*会导致背景被掩盖,显示不出;*/
+}
+.top_nav:before,.top_nav:after{
+content:" ";
+display:table;
+}
+/*在top-nav下的ul前后加上一个空值 结构显示为table (此元素会作为块级表格来显示（类似 <table>）,表格前后带有换行符。)*/
+.top_nav:after{
+clear:both;/*利用after伪类在元素后差一个空格,然后清除浮动,使ul把子容器包裹进来;*/
+}
+.top_nav{
+zoom:1;/*zoom<IE8*//*强制刷新框架*/
+}
+.top_nav li{
+float:left;
+border-right:1px solid #222;
+box-shadow:1px 0 0 #444;
+text-align:center;
+position:relative;
+}
+.top_nav li a{
+float:left;
+padding:12px 30px;
+color:#999;
+font:bold 12px;
+display:block;
+text-shadow:0px 1px 0px #000;
+}
+.top_nav li a:hover{
+color:#fafafa;
+}
+.top_nav li ul{
+visibility:hidden;
+position:absolute;
+top:38px;
+left:0;
+z-index:1;/*堆叠顺序*/
+background-color:#444;
+background-image:linear-gradient(#444,#111);
+box-shadow:0 -1 0 rgba(255,255,255,.3);
+border-radius:3px;
+opacity:0;/*透明度*/
+margin:20px 0 0 0;
+-margin:0;/*针对ie6*/
+transition:all .2s ease-in-out;/*过渡效果  0.2s ease-in-out 规定以慢速开始和结束的过渡效果*/
+}
+.top_nav li:hover > ul{
+opacity:1;/*完全不透明*/
+visibility:visible;
+margin:0;
+} 
+.top_nav ul li{
+float:none;
+border:0;
+display:block;
+box-shadow:0 1px #111,0 2px #666;
+}
+.top_nav ul li:last-child{
+box-shadow:0 1px transparent,0 2px transparent;
+}
+.top_nav ul a{
+padding:10px;
+width:130px;
+display:block;
+float:none;
+_height:10px;/*ie*/
+}
+.top_nav ul a:hover{
+background-color:#0186ba;
+background-image:linear-gradient(#04acec,#0186ba);/*渐变*/
+}
+.top_nav ul li:first-child > a{
+border-radius:3px 3px 0 0;
+}
+.top_nav ul li:last-child > a{
+border-radius:0 0 3px 3px;
+}
+.top_nav ul li:first-child > a:before{
+content:" ";
+position:absolute;
+left:40px;
+top:-6px;
+border-bottom:6px solid #444;
+border-left:6px solid transparent;
+border-right:6px solid transparent;
+}
+.top_nav ul li:first-child >a:hover:before{
+border-bottom-color:#04acec;
+}
+.top_nav ul ul{
+top:0;
+left:150px;
+margin:0 0 0 20px;
+box-shadow:-1px 0 0 rgba(255,255,255,.3);
+}
+.top_nav ul ul li:first-child a:before{
+top:50%;
+left:-6px;
+margin-top:-6px;
+border-left:0;
+border-top:6px solid transparent;
+border-bottom:6px solid transparent;
+border-right:6px solid #3b3b3b;
+}
+.top_nav ul ul li:first-child a:hover:before{
+border-right-color:#0299d3;
+border-bottom-color:transparent;
+}
+
+</style>
+<!-- ie不支持hover属性,用iq解决 -->
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      if ($.browser.msie&&$.browser.version.substr(0,1)<7) {
+        $("li").has("ul").mouseover(function(){
+          $(this).children("ul").css('visibility','visible');
+        }).mouseout(function(){
+          $(this).children("ul").css('visibility','hidden');
+        });
+      }
+    });
+    
+
+
+  </script>
+</head>
+
+<body> 
+<ul class="top_nav">
+  <li><a href="#">慕课网</a></li>
+  <li><a href="#">课程大厅</a></li>
+  <li><a href="#">学习中心</a>
+    <ul> 
+      <li><a href="#">前端课程</a>
+        <ul>
+          <li><a href="#">javascript</a></li>
+          <li><a href="#">css</a></li>
+          <li><a href="#">jquery</a></li>
+        </ul>
+      </li>
+      <li><a href="#">手机开发</a></li>
+      <li><a href="#">后台编程</a></li>
+    </ul>
+  </li>
+  <li><a href="#">关于我们</a></li>
+</ul>
+</body>
+</html>
