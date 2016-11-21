@@ -2,10 +2,89 @@
 <html>
 <head>
 	<title>网页广告特效</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.content{
+			width:960px;
+			height:2000px;
+			background:#e6e6e6;
+			margin:0 auto;
+			position:relative;
+		}
+		.rightAd{
+			
+			width:400px;
+			background: #ccc;
+			position:fixed;/*ie6不支持*/
+			right:0;
+			bottom:0;
+		}
+		.clickMe{
+			text-align: center;
+			font-size: 15px;
+			height:20px;
+			line-height: 20px;
+		}
+		.clickMe a#closeBtn{
+			background: url(image/icon.jpg) no-repeat -399px -19px;
+			width:16px;
+			height:16px;
+			top:3px;
+			right:5px;
+			position:absolute;/*必须*/
+			display: inline-block;/*此句是否可省略???*/
+
+		}
+		.clickMe a#closeBtn:hover{
+			background-position: -343px -19px;	
+		}
+		.hide{
+			display: none;
+		}
+		.show{
+			display: block;
+		}
+	</style>
 </head>
 <body>
-	<div class="content"><img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></div>
+	<div class="content"></div>
+	<div class="rightAd" id="tipCon">
+		<div class="clickMe" id="clickMe">猜猜我有啥<a href="javascript:void(0);" id="closeBtn"></a></div>
+		<div class="showPic" id="showPic"><a href="http://www.baidu.com"><img src="image/snow.gif"></a>
+		</div><!-- javascript:void(0);没有任何实际操作效果,是一个死循环; -->
+	</div>
+	<script>
+		window.onload=function(){
+			var $=function(id){
+				return document.getElementById(id);
+			};
+			// var TipBox=$("tipCon");
+			// var CloseBtn=$("closeBtn");
+			// var ClickMe=$("clickMe");
+			// var ShowPic=$("showPic");
 
-	234
+			// 以上为简化以下代码
+			// var TipBox=document.getElementById("tipCon");
+			// var CloseBtn=document.getElementById("closeBtn");
+			// var ClickMe=document.getElementById("clickMe");
+			// var ShowPic=document.getElementById("showPic");
+			
+			$("clickMe").onmouseover=function(){
+				$("showPic").className="show";
+				$("closeBtn").style.display="block";//这里用className写有bug??
+			};
+			$("closeBtn").onclick=function(){
+				//TipBox.style.display='none';<--常用方法!缺点:行内,改变宽高还得再设置;
+				$("showPic").className="hide";//优点:有样式改变可以直接写在类里面;只需调用样式名;
+				$("closeBtn").style.display="none";
+				
+			};
+			
+		};
+
+	</script>
 </body>
 </html>
