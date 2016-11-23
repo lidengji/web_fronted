@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>豆瓣音乐运动</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.dbmove{
+			background: url(image/dbicon.jpeg) no-repeat 0 0;
+			width:0;
+			height:33px;
+			float:left;
+			
+		}
+		.dbhide{
+			background: url(image/dbicon.jpeg) no-repeat -145px 0;
+			width:21px;
+			height:33px;
+			float:left;
+			display: none;
+		}
+		.dbshow{
+			background: url(image/dbicon.jpeg) no-repeat -167px 0;
+			width:32px;
+			height:33px;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<div class="dbmove" id="dbmove"></div>
+	<a href="javascript:void(0)" class="dbhide" id="dbhide"></a>
+	<a href="javascript:void(0)" class="dbshow" id="dbshow"></a>
+</body>
+<script type="text/javascript" src='move_.js'></script>
+<script type="text/javascript">
+	window.onload=function(){
+		var dbMove=document.getElementById("dbmove");
+		var dbShow=document.getElementById('dbshow');
+		var dbHide=document.getElementById('dbhide');
+
+		dbShow.onclick=function(){
+			dbShow.style.display="none";
+			startMove(dbMove,{width:145});
+			dbHide.style.display="block";//回调函数不起作用??
+		};
+		dbHide.onclick=function(){
+			dbHide.style.display="none";
+			startMove(dbMove,{width:0});
+			dbShow.style.display="block";
+		};
+	};
+</script>
+</html>
