@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>顶部广告</title>
+	<style type="text/css">
+		body,div,img{
+			padding:0;
+			margin:0;
+		}
+		#ad{
+			width:960px;
+			display: none;
+			margin:0 auto;
+			position:relative;
+			overflow: hidden;
+		}
+		#content{
+			width:960px;
+			margin:0 auto;
+			height:1000px;
+			/*background:#ccc;*/
+		}
+		#adcon{
+			width:960px;
+			height:385px;
+		}
+		#adcur{
+			width:960px;
+			height:68px;
+		}
+		#close{
+			position:absolute;
+			width:20px;
+			height:20px;
+			background: #CF3;
+			text-align: center;
+			line-height: 20px;
+			top:0;
+			right:0;
+			display: none;
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="ad">
+		<img id="adcon" src="image/ad.png">
+		<img id="adcur" src="image/cur.png">
+		<span id="close">X</span>
+	</div>
+	<div id="content"><img src="image/数字商品-10-23.jpg"></div>
+</body>
+<script>
+
+// setTimeout() 只执行 code 一次。如果要多次调用，请使用 setInterval() 或者让 code 自身再次调用 setTimeout()。
+
+//setTimeout有一个最小执行时间,当指定的时间小于该时间时，浏览器会用最小允许的时间作为setTimeout的时间间隔，在苹果机上的最小时间间隔是10毫秒，在Windows系统上的最小时间间隔大约是15毫秒,Firefox中定义的最小时间间隔是10毫秒，HTML5定义的最小时间间隔是4毫秒,  !!通过设置为1, 我们可以让程序在浏览器支持的最小时间间隔之后执行.
+	function getId(id){
+		return document.getElementById(id);
+	}
+	var h=0;
+	var step=5;
+	var maxH=getId('adcon').height;
+	var minH=getId('adcur').height;
+	function adDown(){
+			getId("ad").style.height=h+"px";
+			getId("ad").style.display="block";
+		if (h<maxH) {
+			// h+=5;  优化,通过定义step,之后如果要改,直接改step数值即可
+			h+=step;
+			setTimeout(adDown,1);
+		}else{
+			setTimeout(adUp,3000);//停留3秒钟;
+		}
+	}
+	function adUp(){
+		getId("ad").style.height=h+"px";
+		if (h>minH) {
+			// h-=5;
+			h-=step;
+			setTimeout(adUp,1);
+		}else{
+			getId('adcon').style.display="none";
+			// oAdcur.style.display="block";
+			getId('close').style.display="block";
+		}
+		getId('close').onclick=function(){
+			getId("ad").style.display="none";
+		};
+	}
+	setTimeout(adDown,3000); //停留3秒钟;
+</script>
+</html>
+
+
+
+
+
+
+
