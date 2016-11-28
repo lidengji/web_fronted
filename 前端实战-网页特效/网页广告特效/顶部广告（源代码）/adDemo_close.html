@@ -51,7 +51,7 @@ var oClose  = document.getElementById('close');
 */
 var getId = function(id){
 	return document.getElementById(id);
-	}
+	};
 var maxH = getId('adcon').height;//最大高度
 var minH = getId('adcur').height;//最小高度
 var step = 5;//移动的距离
@@ -84,7 +84,7 @@ function adUp(){
 
 getId('close').onclick = function(){
 	getId('ad').style.display = "none";
-}
+};
 setTimeout(adDown, 3000);
 </script>
 </body>

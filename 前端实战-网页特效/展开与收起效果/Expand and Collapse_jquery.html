@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>展开与收起效果-jq</title>
+	<style>
+		body{
+			margin:0 auto;
+			padding:0;
+		}
+		#pn{
+			background: #e8e8e8;
+			width: 600px;
+			display: block;
+			margin:0 auto;
+			padding:5px;
+			font-size: 9pt;
+			height:auto;
+		}
+		.slide{
+			margin:0 auto;
+			padding:0;
+			width:600px;
+			border-top:solid 4px gray
+		}
+		.btn-slide{
+			background: gray;
+			width:120px;
+			height:30px;
+			text-align: center;
+			margin: 0 auto;
+			display: block;
+			color:#fff;
+			line-height: 30px;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<div id ="pn">
+		<p>手机-商品筛选</p>
+		<p>网络:移动4G 联通3G 电信3G</p>
+		<div id="hpn" style="display: none"><!-- 隐藏层 -->
+			<p>价格:5000以上 4000-4999 3000-3999</p>
+			<p>特点:Jd phone计划 "0"元购机 防水 长待机 1080p全高清屏</p>
+			<p>价格:5000以上 4000-4999 3000-3999</p>
+			<p>价格:5000以上 4000-4999 3000-3999</p>
+		</div>
+	</div>
+	<p class="slide">
+		<a href="#" id="strHref" class="btn-slide">更多选项+</a>
+	</p>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#strHref").click(function(){
+			if ($("#hpn").is(":visible")) {
+				$("#hpn").hide(1000);
+				$("#strHref").text("更多选项+");
+			}else{
+				$("#hpn").show(1000);
+				$("#strHref").text("收起");
+			}
+		});
+	});
+</script>
+</html>
+
+
+
+
+
+
+
+
+
