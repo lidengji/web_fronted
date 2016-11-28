@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>自动展开</title>
+    <style type="text/css">  
+       *{
+           padding:0;
+           margin:0 auto;
+       }
+       #ad{
+           height:200px;
+           width:0px;
+           background:#e2c7c7;
+           display:none;
+           overflow:hidden;
+       }    
+       #nav{
+           height:3em;
+           line-height:3em;
+           color:white;
+           text-align:center;
+           background-color: #e6e6e6;
+           width:100%;
+       }
+       #txt{
+           font-size:80px;
+           margin:10px auto;
+           text-align:center;
+           display: none;
+           color:white;
+       }
+    </style>
+    <script type="text/javascript">
+    function getId(id){
+        return document.getElementById(id);
+    }
+
+       var w=0;
+        //增加广告宽度函数
+        function addW(){
+          if (w<100) {
+            getId("ad").style.display="block";
+            w+=5;
+            getId("ad").style.width=w+"%";
+            if (w>40) {
+              getId("txt").style.display="block";
+              getId("txt").style.opacity=w/100;
+            }
+          setTimeout(addW,80);//setTimeout里调用函数函数后不能加()
+        }else{
+          return;
+        }
+        }
+        
+        //在网页加载完毕时，调用增加宽度函数，等待5秒钟后调用减少宽度函数。
+        window.onload=function(){
+          addW();
+          setTimeout(delW,5000);
+        };
+        
+        //减少广告宽度函数
+       function delW(){
+        if (w>0) {
+          w-=5;
+          getId("ad").style.width=w+"%";
+          getId("txt").style.opacity=w/100;
+          if (w<50) {
+            getId("txt").style.display="none";
+          }
+          setTimeout(delW,80);
+        }else{
+           getId("ad").style.display="none";
+           return;
+        }
+       }
+    </script>
+</head>
+<body>
+    <!--广告和正文的HTML代码-->
+    <div id="ad">
+        <div id="txt">
+            <p>欢迎来到慕课网</p>
+            <p>大幅广告</p>
+        </div>
+    </div>
+    <div id="nav">慕课网欢迎你</div>
+    
+</body>
+</html>
