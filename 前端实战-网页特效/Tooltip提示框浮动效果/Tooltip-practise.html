@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>ToolTip效果</title>
+    <style>
+        body {
+            font-size: 18px;
+            line-height: 1.8;
+            font-family: "Microsoft YaHei", "微软雅黑";
+        }
+
+        #demo {
+            width: 500px;
+            margin: 30px auto;
+            padding: 20px 30px;
+            position: relative;
+            background-color: #fff;
+        }
+
+        #demo h2 {
+            color: #03F;
+        }
+
+        #demo .tooltip {
+            color: #03F;
+            cursor: help;
+        }
+
+      
+    </style>
+</head>
+
+<body>
+<div id="demo">
+    <p><a class="tooltip" id="tooltip1">慕课网</a>的使命是传播互联网最前沿技术，帮助更多的人实现梦想！在慕课网前端开发、
+        <a class="tooltip" id="tooltip2">Android</a>开发、<a class="tooltip" id="tooltip3">iOS</a>开发等课程统统有，你还在等什么，赶紧来学习吧。
+    </p>
+</div>
+<script type="text/javascript">
+var box = document.createElement("div");
+box.id = "box";
+
+document.getElementById("demo").appendChild(box);
+var t = document.getElementsByClassName("tooltip");
+document.getElementById("demo").onmouseenter = function() {
+    for (var i = 0; i < t.length; i++) {
+        t[i].onmouseenter = function() {
+            var h = this.offsetTop + 60;
+            var w = this.offsetLeft;
+            document.getElementById("box").innerHTML = "<iframe src='http://baike.baidu.com/search?word=" + this.innerHTML + "&enc=utf8'  width='480px' height='320' scrolling='no' frameborder='0' style='border:1px solid #66CCFF;padding:20px;background-color:white;position:fixed;border-radius:5px;top:" + h + "px;left:" + w + "'></iframe>";
+        };
+        t[i].onmouseleave = function() {
+            document.getElementById("box").innerHTML = "";
+        };
+    }
+};
+  
+
+</script>
+</body>
+</html>
